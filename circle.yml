@@ -33,5 +33,4 @@ test:
       && unzip "${CLI_PARENT_DIR}/cslang-cli.zip" -d "${CLI_PARENT_DIR}"
       && chmod +x "${CLI_EXECUTABLE}"
   override:
-    - echo 'placeholder'
     - ${CLI_EXECUTABLE} run --f ${CLI_CONTENT}/io/cloudslang/base/print/print_text.sl --i text=cli_works
