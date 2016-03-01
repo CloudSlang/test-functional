@@ -1,0 +1,13 @@
+target/
+output/
+build/
+*.class
+*.log
+*.log.*
+.idea/
+*.ipr
+*.iml
+*.history
+.settings/
+.project
+.classpath
