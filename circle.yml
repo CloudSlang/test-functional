@@ -7,6 +7,31 @@
 #
 ####################################################
 
+# Inputs to this script:
+#   - CSLANG_VERSION_TAG
+
+general:
+  artifacts:
+    - "/workdir/cli/cslang/logs/execution.log"
+
+machine:
+  environment:
+    WORKDIR: "${HOME}/workdir"
+    CLI_PARENT_DIR: "${WORKDIR}/cli"
+    CLI_DIR: "${CLI_PARENT_DIR}/cslang"
+    CLI_EXECUTABLE: "${CLI_DIR}/bin/cslang"
+    CLI_CONTENT: "${CLI_DIR}/content"
+
+dependencies:
+  override:
+    - echo "Build uses CloudSlang version: ${CSLANG_VERSION_TAG}"
+
 test:
+  pre:
+    - > # download CLI
+      wget "https://github.com/CloudSlang/cloud-slang/releases/download/${CSLANG_VERSION_TAG}/cslang-cli-with-content.zip" -O "${CLI_PARENT_DIR}/cslang-cli.zip"
+      && unzip "${CLI_PARENT_DIR}/cslang-cli.zip" -d "${CLI_PARENT_DIR}"
+      && chmod +x "${CLI_EXECUTABLE}"
   override:
     - echo 'placeholder'
+    - ${CLI_EXECUTABLE} run --f ${CLI_CONTENT}/io/cloudslang/base/print/print_text.sl --i text=cli_works
