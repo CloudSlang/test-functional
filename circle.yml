@@ -28,6 +28,7 @@ dependencies:
 
 test:
   pre:
+    - mkdir -p "${CLI_PARENT_DIR}"
     - > # download CLI
       wget "https://github.com/CloudSlang/cloud-slang/releases/download/${CSLANG_VERSION_TAG}/cslang-cli-with-content.zip" -O "${CLI_PARENT_DIR}/cslang-cli.zip"
       && unzip "${CLI_PARENT_DIR}/cslang-cli.zip" -d "${CLI_PARENT_DIR}"
