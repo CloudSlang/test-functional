@@ -24,7 +24,7 @@ machine:
 
 dependencies:
   override:
-    - echo "Build uses CloudSlang version: ${CSLANG_VERSION_TAG}"
+    - 'echo "Build uses CloudSlang version: ${CSLANG_VERSION_TAG}"'
 
 test:
   pre:
