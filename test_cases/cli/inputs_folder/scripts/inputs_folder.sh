@@ -11,7 +11,7 @@ echo "Test case started: inputs_folder"
 # copy input files
 echo "Copying input files ${INPUTS_SRC_DIR} -> ${INPUTS_TARGET_DIR}"
 mkdir -p ${INPUTS_TARGET_DIR}
-cp -avr ${INPUTS_TARGET_DIR} ${INPUTS_SRC_DIR}
+cp -avr ${INPUTS_SRC_DIR} ${INPUTS_TARGET_DIR}
 
 # run flow
 echo "Running test flow"
