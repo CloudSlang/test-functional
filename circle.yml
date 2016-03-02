@@ -21,6 +21,11 @@ machine:
     CLI_DIR: "${CLI_PARENT_DIR}/cslang"
     CLI_EXECUTABLE: "${CLI_DIR}/bin/cslang"
     CLI_CONTENT: "${CLI_DIR}/content"
+    CLI_CONFIGURATION: "${CLI_DIR}/configuration"
+    TEST_CASES_DIR: "${HOME}/test_cases"
+    TEST_CASES_CLI_DIR: "${TEST_CASES_DIR}/cli"
+    TEST_CASES_CLI_INPUTS_DIR: "${TEST_CASES_CLI_DIR}/inputs_folder"
+    TEST_CASES_CLI_INPUTS_SCRIPTS_DIR: "${TEST_CASES_CLI_DIR}/scripts"
 
 dependencies:
   override:
@@ -34,4 +39,12 @@ test:
       && unzip "${CLI_PARENT_DIR}/cslang-cli.zip" -d "${CLI_PARENT_DIR}"
       && chmod +x "${CLI_EXECUTABLE}"
   override:
+    # sanity
     - ${CLI_EXECUTABLE} run --f ${CLI_CONTENT}/io/cloudslang/base/print/print_text.sl --i text=cli_works
+    # CLI - inputs folder
+    - >
+      INPUTS_TARGET_DIR=${CLI_CONFIGURATION}/inputs
+      INPUTS_SRC_DIR=${TEST_CASES_CLI_INPUTS_DIR}/resources/inputs
+      CLI_EXECUTABLE=${CLI_EXECUTABLE}
+      TEST_FLOW=${TEST_CASES_CLI_DIR}/cslang/inputs_folder.sl
+      ${TEST_CASES_CLI_INPUTS_SCRIPTS_DIR}/inputs_folder.sh
