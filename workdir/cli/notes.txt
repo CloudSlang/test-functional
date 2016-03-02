@@ -1,0 +1,4 @@
+workdir
+  cli
+    .zip
+    cslang
