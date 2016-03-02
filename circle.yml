@@ -25,7 +25,7 @@ machine:
     TEST_CASES_DIR: "${HOME}/test_cases"
     TEST_CASES_CLI_DIR: "${TEST_CASES_DIR}/cli"
     TEST_CASES_CLI_INPUTS_DIR: "${TEST_CASES_CLI_DIR}/inputs_folder"
-    TEST_CASES_CLI_INPUTS_SCRIPTS_DIR: "${TEST_CASES_CLI_DIR}/scripts"
+    TEST_CASES_CLI_INPUTS_SCRIPTS_DIR: "${TEST_CASES_CLI_INPUTS_DIR}/scripts"
 
 dependencies:
   override:
