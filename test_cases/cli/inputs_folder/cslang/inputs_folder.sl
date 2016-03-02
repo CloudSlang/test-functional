@@ -17,13 +17,13 @@ operation:
         required: true
     - level_0_1_input_2:
         required: true
-    - level_1_0_input_1:
-        required: true
-    - level_1_0_input_2:
-        required: true
-    - level_1_1_input_1:
-        required: true
-    - level_1_1_input_2:
-        required: true
+#    - level_1_0_input_1:
+#        required: true
+#    - level_1_0_input_2:
+#        required: true
+#    - level_1_1_input_1:
+#        required: true
+#    - level_1_1_input_2:
+#        required: true
   action:
     python_script: pass
