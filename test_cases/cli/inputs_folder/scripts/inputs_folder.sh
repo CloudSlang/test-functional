@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Inputs to this script:
-#   - INPUTS_TARGET_DIR <path>/inputs
-#   - INPUTS_SRC_DIR <path>/inputs
-#   - CLI_EXECUTABLE
-#   - TEST_FLOW
+#   - INPUTS_TARGET_DIR: <parent_path_to_inputs>
+#   - INPUTS_SRC_DIR: <path>/inputs
+#   - CLI_EXECUTABLE: path
+#   - TEST_FLOW: path
 
 echo "Test case started: inputs_folder"
 

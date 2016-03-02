@@ -12,7 +12,7 @@
 
 general:
   artifacts:
-    - "/workdir/cli/cslang/logs/execution.log"
+    - "${HOME}/test-functional/workdir/cli/cslang/logs/execution.log"
 
 machine:
   environment:
