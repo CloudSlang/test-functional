@@ -45,7 +45,7 @@ test:
     # CLI - inputs folder
     - >
       chmod +x ${TEST_CASES_CLI_INPUTS_SCRIPTS_DIR}/inputs_folder.sh &&
-      INPUTS_TARGET_DIR=${CLI_CONFIGURATION}/inputs
+      INPUTS_TARGET_DIR=${CLI_CONFIGURATION}
       INPUTS_SRC_DIR=${TEST_CASES_CLI_INPUTS_DIR}/resources/inputs
       CLI_EXECUTABLE=${CLI_EXECUTABLE}
       TEST_FLOW=${TEST_CASES_CLI_INPUTS_DIR}/cslang/inputs_folder.sl
