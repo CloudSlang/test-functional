@@ -50,4 +50,4 @@ test:
       CLI_EXECUTABLE=${CLI_EXECUTABLE}
       TEST_FLOW=${TEST_CASES_CLI_INPUTS_DIR}/cslang/inputs_folder.sl
       ${TEST_CASES_CLI_INPUTS_SCRIPTS_DIR}/inputs_folder.sh
-    - cat ${HOME}/test-functional/workdir/cli/cslang/logs/execution.log
+    # - cat ${HOME}/test-functional/workdir/cli/cslang/logs/execution.log
