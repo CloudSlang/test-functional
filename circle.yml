@@ -29,6 +29,8 @@ machine:
     TEST_CASES_CLI_INPUTS_SCRIPTS_DIR: "${TEST_CASES_CLI_INPUTS_DIR}/scripts"
     TEST_CASES_CLI_PROPS_DIR: "${TEST_CASES_CLI_DIR}/properties_folder"
     TEST_CASES_CLI_PROPS_SCRIPTS_DIR: "${TEST_CASES_CLI_PROPS_DIR}/scripts"
+    TEST_CASES_CLI_LOG4J_DIR: "${TEST_CASES_CLI_DIR}/log4j"
+    TEST_CASES_CLI_LOG4J_SCRIPTS_DIR: "${TEST_CASES_CLI_LOG4J_DIR}/scripts"
 
 dependencies:
   override:
@@ -60,4 +62,12 @@ test:
       CLI_EXECUTABLE=${CLI_EXECUTABLE}
       TEST_FLOW=${TEST_CASES_CLI_PROPS_DIR}/cslang/properties_folder.sl
       ${TEST_CASES_CLI_PROPS_SCRIPTS_DIR}/properties_folder.sh
-    # - cat ${HOME}/test-functional/workdir/cli/cslang/logs/execution.log
+    # CLI - log4j
+    - >
+      chmod +x ${TEST_CASES_CLI_LOG4J_SCRIPTS_DIR}/log4j.sh &&
+      LOG4J_DIR=${CLI_CONFIGURATION}/logging
+      APP_HOME=${CLI_DIR}
+      RESOURCES_FOLDER=${TEST_CASES_CLI_LOG4J_DIR}/resources
+      CLI_EXECUTABLE=${CLI_EXECUTABLE}
+      CLI_CONTENT=${CLI_CONTENT}
+      ${TEST_CASES_CLI_LOG4J_SCRIPTS_DIR}/log4j.sh
