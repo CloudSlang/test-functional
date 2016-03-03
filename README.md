@@ -9,5 +9,5 @@ Test matrix:
 |:-------------|:-------------|:-----|
 | configuration/inputs | done | N/A |
 | configuration/properties | done | N/A |
-| configuration/cslang.properties - log4j | in progress | N/A (not implemented yet) |
-| configuration/cslang.properties - encoding | TBD | N/A (not implemented yet) |
+| configuration/cslang.properties - log4j | done | N/A (not implemented yet) |
+| configuration/cslang.properties - encoding | in progress | N/A (not implemented yet) |
