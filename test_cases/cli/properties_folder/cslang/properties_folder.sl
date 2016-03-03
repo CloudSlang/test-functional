@@ -1,6 +1,6 @@
 ####################################################
 #!!
-#! @description: Flow with required inputs - default inputs folder case
+#! @description: Flow with required inputs - default properties folder case
 #!!#
 ####################################################
 
