@@ -31,6 +31,8 @@ machine:
     TEST_CASES_CLI_PROPS_SCRIPTS_DIR: "${TEST_CASES_CLI_PROPS_DIR}/scripts"
     TEST_CASES_CLI_LOG4J_DIR: "${TEST_CASES_CLI_DIR}/log4j"
     TEST_CASES_CLI_LOG4J_SCRIPTS_DIR: "${TEST_CASES_CLI_LOG4J_DIR}/scripts"
+    TEST_CASES_CLI_ENCODING_DIR: "${TEST_CASES_CLI_DIR}/encoding"
+    TEST_CASES_CLI_ENCODING_SCRIPTS_DIR: "${TEST_CASES_CLI_ENCODING_DIR}/scripts"
 
 dependencies:
   override:
@@ -73,3 +75,10 @@ test:
       CLI_EXECUTABLE=${CLI_EXECUTABLE}
       CLI_CONTENT=${CLI_CONTENT}
       ${TEST_CASES_CLI_LOG4J_SCRIPTS_DIR}/log4j.sh
+    # CLI - encoding
+    - >
+      chmod +x ${TEST_CASES_CLI_ENCODING_SCRIPTS_DIR}/encoding.sh &&
+      INPUT_FILE_PATH=${TEST_CASES_CLI_ENCODING_DIR}/resources/inputs/utf8.inputs.yaml
+      CLI_EXECUTABLE=${CLI_EXECUTABLE}
+      TEST_FLOW=${CLI_CONTENT}/io/cloudslang/base/print/print_text.sl
+      ${TEST_CASES_CLI_ENCODING_SCRIPTS_DIR}/encoding.sh
