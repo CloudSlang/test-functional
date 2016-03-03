@@ -65,11 +65,11 @@ test:
       TEST_FLOW=${TEST_CASES_CLI_PROPS_DIR}/cslang/properties_folder.sl
       ${TEST_CASES_CLI_PROPS_SCRIPTS_DIR}/properties_folder.sh
     # CLI - log4j
-#    - >
-#      chmod +x ${TEST_CASES_CLI_LOG4J_SCRIPTS_DIR}/log4j.sh &&
-#      LOG4J_DIR=${CLI_CONFIGURATION}/logging
-#      APP_HOME=${CLI_DIR}
-#      RESOURCES_FOLDER=${TEST_CASES_CLI_LOG4J_DIR}/resources
-#      CLI_EXECUTABLE=${CLI_EXECUTABLE}
-#      CLI_CONTENT=${CLI_CONTENT}
-#      ${TEST_CASES_CLI_LOG4J_SCRIPTS_DIR}/log4j.sh
+    - >
+      chmod +x ${TEST_CASES_CLI_LOG4J_SCRIPTS_DIR}/log4j.sh &&
+      LOG4J_DIR=${CLI_CONFIGURATION}/logging
+      APP_HOME=${CLI_DIR}
+      RESOURCES_FOLDER=${TEST_CASES_CLI_LOG4J_DIR}/resources
+      CLI_EXECUTABLE=${CLI_EXECUTABLE}
+      CLI_CONTENT=${CLI_CONTENT}
+      ${TEST_CASES_CLI_LOG4J_SCRIPTS_DIR}/log4j.sh
