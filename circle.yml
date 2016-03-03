@@ -27,6 +27,8 @@ machine:
     TEST_CASES_CLI_DIR: "${TEST_CASES_DIR}/cli"
     TEST_CASES_CLI_INPUTS_DIR: "${TEST_CASES_CLI_DIR}/inputs_folder"
     TEST_CASES_CLI_INPUTS_SCRIPTS_DIR: "${TEST_CASES_CLI_INPUTS_DIR}/scripts"
+    TEST_CASES_CLI_PROPS_DIR: "${TEST_CASES_CLI_DIR}/properties_folder"
+    TEST_CASES_CLI_PROPS_SCRIPTS_DIR: "${TEST_CASES_CLI_PROPS_DIR}/scripts"
 
 dependencies:
   override:
@@ -50,4 +52,12 @@ test:
       CLI_EXECUTABLE=${CLI_EXECUTABLE}
       TEST_FLOW=${TEST_CASES_CLI_INPUTS_DIR}/cslang/inputs_folder.sl
       ${TEST_CASES_CLI_INPUTS_SCRIPTS_DIR}/inputs_folder.sh
+    # CLI - properties folder
+    - >
+      chmod +x ${TEST_CASES_CLI_PROPS_SCRIPTS_DIR}/properties_folder.sh &&
+      PROPS_TARGET_DIR=${CLI_CONFIGURATION}
+      PROPS_SRC_DIR=${TEST_CASES_CLI_PROPS_DIR}/resources/properties
+      CLI_EXECUTABLE=${CLI_EXECUTABLE}
+      TEST_FLOW=${TEST_CASES_CLI_PROPS_DIR}/cslang/properties_folder.sl
+      ${TEST_CASES_CLI_PROPS_SCRIPTS_DIR}/properties_folder.sh
     # - cat ${HOME}/test-functional/workdir/cli/cslang/logs/execution.log
