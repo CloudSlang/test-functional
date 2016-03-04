@@ -18,7 +18,7 @@ then
   exit ${CLI_EXIT_CODE}
 fi
 # verify UTF-8 text was printed correctly
-PRINTED_TEXT=$(echo "${CLI_OUPUT}" | grep 'utf8_prefix_' | sed "s/utf8_prefix_//g")
+PRINTED_TEXT=$(echo "${CLI_OUPUT}" | grep 'UTF8_PREFIX_' | sed "s/UTF8_PREFIX_//g")
 if [ "${PRINTED_TEXT}" !=  "???èéëïîÿù" ]
 then
   echo "Printed text mismatch. Expected: \`???èéëïîÿù\` Actual: \`${PRINTED_TEXT}\`"
