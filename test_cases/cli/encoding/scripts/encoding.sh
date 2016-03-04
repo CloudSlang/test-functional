@@ -19,9 +19,9 @@ then
 fi
 # verify UTF-8 text was printed correctly
 PRINTED_TEXT=$(echo "${CLI_OUPUT}" | grep 'utf8_prefix_' | sed "s/utf8_prefix_//g")
-if [ "${PRINTED_TEXT}" !=  "???θιλοξÿω" ]
+if [ "${PRINTED_TEXT}" !=  "???Γ¨Γ©Γ«Γ―Γ®ΓΏΓΉ" ]
 then
-  echo "Printed text mismatch. Expected: \`???θιλοξÿω\` Actual: \`${PRINTED_TEXT}\`"
+  echo "Printed text mismatch. Expected: \`???Γ¨Γ©Γ«Γ―Γ®ΓΏΓΉ\` Actual: \`${PRINTED_TEXT}\`"
   exit 1
 fi
 
