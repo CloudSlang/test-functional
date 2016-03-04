@@ -9,12 +9,20 @@ echo "Test case started: encoding"
 
 # run CLI with input file
 echo "Run CLI with input file: ${INPUT_FILE_PATH}"
-${CLI_EXECUTABLE} run --f ${TEST_FLOW} --if ${INPUT_FILE_PATH}
+CLI_OUPUT=$(${CLI_EXECUTABLE} run --f ${TEST_FLOW} --if ${INPUT_FILE_PATH})
 CLI_EXIT_CODE=$?
+# verify CLI run was successful
 if [ "${CLI_EXIT_CODE}" !=  "0" ]
 then
   echo "CLI failed with exit code: ${CLI_EXIT_CODE}"
   exit ${CLI_EXIT_CODE}
+fi
+# verify UTF-8 text was printed correctly
+PRINTED_TEXT=$(echo "${CLI_OUPUT}" | grep 'utf8_prefix_' | sed "s/utf8_prefix_//g")
+if [ "${PRINTED_TEXT}" !=  "???θιλοξÿω" ]
+then
+  echo "Printed text mismatch. Expected: \`???θιλοξÿω\` Actual: \`${PRINTED_TEXT}\`"
+  exit 1
 fi
 
 echo "Test case finished: encoding"
