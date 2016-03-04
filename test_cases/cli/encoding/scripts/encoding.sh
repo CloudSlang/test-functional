@@ -11,6 +11,8 @@ echo "Test case started: encoding"
 echo "Run CLI with input file: ${INPUT_FILE_PATH}"
 CLI_OUPUT=$(${CLI_EXECUTABLE} run --f ${TEST_FLOW} --if ${INPUT_FILE_PATH})
 CLI_EXIT_CODE=$?
+echo "CLI output:"
+echo "${CLI_OUPUT}"
 # verify CLI run was successful
 if [ "${CLI_EXIT_CODE}" !=  "0" ]
 then
