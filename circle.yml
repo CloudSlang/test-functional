@@ -23,6 +23,11 @@ machine:
     CLI_EXECUTABLE: "${CLI_DIR}/bin/cslang"
     CLI_CONTENT: "${CLI_DIR}/content"
     CLI_CONFIGURATION: "${CLI_DIR}/configuration"
+    CLI_LOGS_DIR: "${CLI_DIR}/logs"
+    CLI_LOGS_FILE_PATH: "${CLI_LOGS_DIR}/execution.log"
+    BUILDER_PARENT_DIR: "${WORKDIR}/builder"
+    BUILDER_LOGS_FILE_PATH: "${BUILDER_PARENT_DIR}/logs/execution.log"
+    BUILDER_EXECUTABLE: "${BUILDER_PARENT_DIR}/bin/cslang-builder"
     TEST_CASES_DIR: "${REPO_HOME}/test_cases"
     TEST_CASES_CLI_DIR: "${TEST_CASES_DIR}/cli"
     TEST_CASES_CLI_INPUTS_DIR: "${TEST_CASES_CLI_DIR}/inputs_folder"
@@ -33,6 +38,12 @@ machine:
     TEST_CASES_CLI_LOG4J_SCRIPTS_DIR: "${TEST_CASES_CLI_LOG4J_DIR}/scripts"
     TEST_CASES_CLI_ENCODING_DIR: "${TEST_CASES_CLI_DIR}/encoding"
     TEST_CASES_CLI_ENCODING_SCRIPTS_DIR: "${TEST_CASES_CLI_ENCODING_DIR}/scripts"
+    TEST_CASES_CLI_SENSITIVE_DIR: "${TEST_CASES_CLI_DIR}/sensitive"
+    TEST_CASES_CLI_SENSITIVE_SCRIPTS_DIR: "${TEST_CASES_CLI_SENSITIVE_DIR}/scripts"
+    TEST_CASES_BUILDER_DIR: "${TEST_CASES_DIR}/builder"
+    TEST_CASES_BUILDER_SENSITIVE_DIR: "${TEST_CASES_BUILDER_DIR}/sensitive"
+    TEST_CASES_BUILDER_SENSITIVE_CSLANG_DIR: "${TEST_CASES_BUILDER_SENSITIVE_DIR}/cslang"
+    TEST_CASES_BUILDER_SENSITIVE_SCRIPTS_DIR: "${TEST_CASES_BUILDER_SENSITIVE_DIR}/scripts"
 
 dependencies:
   override:
@@ -45,6 +56,10 @@ test:
       wget "https://github.com/CloudSlang/cloud-slang/releases/download/${CSLANG_VERSION_TAG}/cslang-cli-with-content.zip" -O "${CLI_PARENT_DIR}/cslang-cli.zip"
       && unzip "${CLI_PARENT_DIR}/cslang-cli.zip" -d "${CLI_PARENT_DIR}"
       && chmod +x "${CLI_EXECUTABLE}"
+    - > # download builder
+      wget "https://github.com/CloudSlang/cloud-slang/releases/download/${CSLANG_VERSION_TAG}/cslang-builder.zip" -O "${BUILDER_PARENT_DIR}/cslang-builder.zip"
+      && unzip "${BUILDER_PARENT_DIR}/cslang-builder.zip" -d "${BUILDER_PARENT_DIR}"
+      && chmod +x "${BUILDER_EXECUTABLE}"
   override:
     # sanity
     - ${CLI_EXECUTABLE} run --f ${CLI_CONTENT}/io/cloudslang/base/print/print_text.sl --i text=cli_works
@@ -82,3 +97,21 @@ test:
       CLI_EXECUTABLE=${CLI_EXECUTABLE}
       TEST_FLOW=${CLI_CONTENT}/io/cloudslang/base/print/print_text.sl
       ${TEST_CASES_CLI_ENCODING_SCRIPTS_DIR}/encoding.sh
+    # CLI - sensitive
+    - >
+      chmod +x ${TEST_CASES_CLI_SENSITIVE_SCRIPTS_DIR}/sensitive.sh &&
+      CLI_EXECUTABLE=${CLI_EXECUTABLE}
+      TEST_FLOW_PATH=${TEST_CASES_CLI_SENSITIVE_DIR}/cslang/cloudslang/sensitive_flow.sl
+      CONTENT_CLASSPATH=${TEST_CASES_CLI_SENSITIVE_DIR}/cslang/
+      INPUTS_FILE_PATH=${TEST_CASES_CLI_SENSITIVE_DIR}/resources/inputs/sensitive.inputs.yaml
+      PASSWORD_INPUT_VALUE=secret_password
+      LOG_FILE_PATH=${CLI_LOGS_FILE_PATH}
+      ${TEST_CASES_CLI_SENSITIVE_SCRIPTS_DIR}/sensitive.sh
+    # BUILDER - sensitive
+    - >
+      chmod +x ${TEST_CASES_BUILDER_SENSITIVE_SCRIPTS_DIR}/sensitive.sh &&
+      BUILDER_EXECUTABLE=${BUILDER_EXECUTABLE}
+      TEST_PARENT=${TEST_CASES_BUILDER_SENSITIVE_CSLANG_DIR}
+      PASSWORD_INPUT_VALUE=secret_password
+      LOG_FILE_PATH=${BUILDER_LOGS_FILE_PATH}
+      ${TEST_CASES_BUILDER_SENSITIVE_SCRIPTS_DIR}/sensitive.sh

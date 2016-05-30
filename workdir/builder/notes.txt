@@ -1,0 +1,6 @@
+workdir
+  cli
+    .zip
+    builder
+      bin
+      ...

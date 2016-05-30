@@ -33,5 +33,5 @@ operation:
     - level_1_1_input_2:
         default: ${get_sp('cloudslang.properties.level_1_1_input_2', None)}
         required: true
-  action:
-    python_script: pass
+  python_action:
+    script: pass
