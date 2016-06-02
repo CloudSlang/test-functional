@@ -10,4 +10,5 @@ Test matrix:
 | configuration/inputs | done | N/A |
 | configuration/properties | done | N/A |
 | configuration/cslang.properties - log4j | done | N/A (not implemented yet) |
-| configuration/cslang.properties - encoding | done | N/A (not implemented yet) |
+| configuration/cslang.properties - encoding | done | TODO |
+| sensitive data | done | done |

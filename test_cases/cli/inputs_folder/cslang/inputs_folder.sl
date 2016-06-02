@@ -25,5 +25,5 @@ operation:
 #        required: true
 #    - level_1_1_input_2:
 #        required: true
-  action:
-    python_script: pass
+  python_action:
+    script: pass
