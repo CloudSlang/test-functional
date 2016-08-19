@@ -10,7 +10,9 @@
 test1:
   testSuites: ['sensitive']
   inputs:
-    - password: 'secret_password'
+    - password:
+        value: 'secret_password'
+        sensitive: true
   description: Runs flow specified - dummy description
   testFlowPath: cloudslang.sensitive_flow
   result: SUCCESS
