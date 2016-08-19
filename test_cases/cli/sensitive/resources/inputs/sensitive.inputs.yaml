@@ -1,1 +1,3 @@
-password: 'secret_password'
+password:
+  value: 'secret_password'
+  sensitive: true
