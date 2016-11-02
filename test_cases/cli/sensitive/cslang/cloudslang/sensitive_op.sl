@@ -17,7 +17,7 @@ operation:
       new_pass = password[0] + "_generated_by_action" # not used
   outputs:
     - password_len:
-        value: ${len(password)}
+        value: ${str(len(password))}
         sensitive: false
   results:
     - SUCCESS: ${password != None}
